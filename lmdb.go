@@ -195,11 +195,10 @@ func (d driver) Open(path string) (engine.DB, error) {
 		return nil, err
 	}
 
-	// TODO: set max size
-	// size := uint64(500 * 1024 * 1024)
-	// if err = env.SetMapSize(size); err != nil {
-	//     return nil, err
-	// }
+	size := uint64(500 * 1024 * 1024)
+	if err = env.SetMapSize(size); err != nil {
+		return nil, err
+	}
 
 	flags := mdb.CREATE | mdb.NOSYNC | mdb.NOMETASYNC | mdb.WRITEMAP | mdb.MAPASYNC
 
